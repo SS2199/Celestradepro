@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: angular-app
-          path: ./www  # Use the correct output path from angular.json
+          path: ./dist/celestradepro  # Use the correct output path from angular.json
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,15 +47,15 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: angular-app
-          path: ./www  # Use the correct output path from angular.json
+          path: ./dist/celestradepro  # Use the correct output path from angular.json
 
       - name: List files in the www directory
-        run: ls -R ./www
+        run: ls -R ./dist/celestradepro
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'CelesTradePro'
           slot-name: 'Production'
-          package: .
+          package: ./dist/celestradepro
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_228B87EB152740CA8ED64EBC33040B86 }}
