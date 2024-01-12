@@ -49,7 +49,7 @@ jobs:
           name: angular-app
           path: ./dist/celestradepro  # Use the correct output path from angular.json
 
-      - name: List files in the www directory
+      - name: List files in the dist directory
         run: ls -R ./dist/celestradepro
 
       - name: Deploy to Azure Web App
